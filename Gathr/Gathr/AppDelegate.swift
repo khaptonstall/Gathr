@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Initialize Parse.
+        Parse.setApplicationId("K9omvQYecTjvHo2MjrC5o4SrUfrt0SRBQ2pLgKIZ",
+            clientKey: "T6P1BR0jrNIqVVr2t3OHIudm1gyc885oAsQFEYic")
+        PFUser.enableAutomaticUser()
+       // PFUser.currentUser()?.setValue("Tester", forKey: "username")
+       // PFUser.currentUser()?.saveInBackground()
+
         return true
     }
 

@@ -73,13 +73,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CE481F1BB72EA400B223A3 /* CoreLocation.framework in Frameworks */,
 				29CE482B1BB72FE500B223A3 /* libsqlite3.tbd in Frameworks */,
 				29CE48291BB72FD800B223A3 /* libz.tbd in Frameworks */,
 				29CE48271BB72EC300B223A3 /* SystemConfiguration.framework in Frameworks */,
 				29CE48251BB72EB800B223A3 /* StoreKit.framework in Frameworks */,
 				29CE48231BB72EB400B223A3 /* Security.framework in Frameworks */,
 				29CE48211BB72EAC00B223A3 /* QuartzCore.framework in Frameworks */,
-				29CE481F1BB72EA400B223A3 /* CoreLocation.framework in Frameworks */,
 				29CE481D1BB72E9B00B223A3 /* CoreGraphics.framework in Frameworks */,
 				29CE481B1BB72E9400B223A3 /* CFNetwork.framework in Frameworks */,
 				29CE48191BB72E8C00B223A3 /* AudioToolbox.framework in Frameworks */,
@@ -461,6 +461,7 @@
 				29CE480F1BB72ABF00B223A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29CE48101BB72ABF00B223A3 /* Build configuration list for PBXNativeTarget "GathrTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				29CE48121BB72ABF00B223A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

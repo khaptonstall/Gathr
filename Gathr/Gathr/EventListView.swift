@@ -112,7 +112,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
                     var event = EventCell()
                     event.eventTitle = obj["title"] as! String
                     event.eventStartDate = obj["startDate"] as! String
-                    event.eventTime = obj["time"] as! String
+                    //event.eventTime = obj["time"] as! String
                     
                     
                     self.eventList.append(event)

@@ -66,7 +66,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
                     var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(dLocation.latitude, dLocation.longitude)
                     
                     annotation.coordinate = location
-                    annotation.title = "Sample Event"
+                    annotation.title = obj["title"] as! String
                     self.map.addAnnotation(annotation)
                 }
             } else {

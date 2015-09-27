@@ -80,7 +80,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func pullToRefresh(){
         if refreshCtrl.refreshing == false {
-            self.tableView.reloadData()
+            self.getEvents()
         }
         
         refreshCtrl.endRefreshing()

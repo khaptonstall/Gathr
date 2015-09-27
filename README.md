@@ -15,11 +15,11 @@ Gathr uses your location to find events around you in an easy to display list, o
 
 
 
-###Team Members
+##Team Members
 
 [Kyle Haptonstall][kyle-github]
 
-[Charlie Roth][alex-github]   
+[Charlie Roth][charlie-github]   
 
 [Pravin Kandala][pravin-github]   
 

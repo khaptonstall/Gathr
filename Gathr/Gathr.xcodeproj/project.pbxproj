@@ -27,6 +27,7 @@
 		29CE482B1BB72FE500B223A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CE482A1BB72FE500B223A3 /* libsqlite3.tbd */; };
 		29CE482D1BB7348100B223A3 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE482C1BB7348100B223A3 /* EventListView.swift */; settings = {ASSET_TAGS = (); }; };
 		29CE482F1BB737B000B223A3 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE482E1BB737B000B223A3 /* EventCell.swift */; settings = {ASSET_TAGS = (); }; };
+		29CE48311BB77D8B00B223A3 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE48301BB77D8B00B223A3 /* EventDetailView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		29CE482A1BB72FE500B223A3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		29CE482C1BB7348100B223A3 /* EventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		29CE482E1BB737B000B223A3 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		29CE48301BB77D8B00B223A3 /* EventDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				29CE47F11BB72ABF00B223A3 /* AppDelegate.swift */,
 				29CE482C1BB7348100B223A3 /* EventListView.swift */,
+				29CE48301BB77D8B00B223A3 /* EventDetailView.swift */,
 				29CE482E1BB737B000B223A3 /* EventCell.swift */,
 				29CE47F51BB72ABF00B223A3 /* SecondViewController.swift */,
 				29CE47F71BB72ABF00B223A3 /* Main.storyboard */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29CE482F1BB737B000B223A3 /* EventCell.swift in Sources */,
+				29CE48311BB77D8B00B223A3 /* EventDetailView.swift in Sources */,
 				29CE47F61BB72ABF00B223A3 /* SecondViewController.swift in Sources */,
 				29CE47F21BB72ABF00B223A3 /* AppDelegate.swift in Sources */,
 				29CE482D1BB7348100B223A3 /* EventListView.swift in Sources */,

@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
-class EventCell: UICollectionViewCell{
+class EventCell: UITableViewCell{
+    //let map = mapView
+    var eventTitle:String?
+    var eventLocation:String? //change to map variable for location
+    var eventStartDate:String?
+    var eventEndDate:String?
+    var eventTime:String?
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 }

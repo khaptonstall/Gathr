@@ -17,14 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Set up nav bar appearance
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
+        
         
         // Initialize Parse.
         Parse.setApplicationId("K9omvQYecTjvHo2MjrC5o4SrUfrt0SRBQ2pLgKIZ",
             clientKey: "T6P1BR0jrNIqVVr2t3OHIudm1gyc885oAsQFEYic")
+        
+        //Set up anonymous users
         PFUser.enableAutomaticUser()
-       // PFUser.currentUser()?.setValue("Tester", forKey: "username")
-       // PFUser.currentUser()?.saveInBackground()
+     
 
         return true
     }

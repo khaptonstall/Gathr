@@ -4,7 +4,7 @@ Find things to do, wherever you go!
 Gathr is an iOS app written in Swift which placed 3rd in the Civic category at NIU's Huskie Hack!    
 
 ## Screenshots   
-![](ReadmeAssets/EventList.png)   
+![](ReadmeAssets/EventList.png =100x20)   
 ![](ReadmeAssets/MapView.png)   
 ![](ReadmeAssets/AddEvent.png)  
 

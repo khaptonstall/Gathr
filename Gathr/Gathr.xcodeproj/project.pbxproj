@@ -27,6 +27,7 @@
 		29CE482B1BB72FE500B223A3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CE482A1BB72FE500B223A3 /* libsqlite3.tbd */; };
 		29CE482D1BB7348100B223A3 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE482C1BB7348100B223A3 /* EventListView.swift */; settings = {ASSET_TAGS = (); }; };
 		29CE482F1BB737B000B223A3 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE482E1BB737B000B223A3 /* EventCell.swift */; settings = {ASSET_TAGS = (); }; };
+		A65D5FFA1BB7692E00DC680C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65D5FF91BB7692E00DC680C /* AddEventViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		29CE482A1BB72FE500B223A3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		29CE482C1BB7348100B223A3 /* EventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		29CE482E1BB737B000B223A3 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		A65D5FF91BB7692E00DC680C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				29CE47FA1BB72ABF00B223A3 /* Assets.xcassets */,
 				29CE47FC1BB72ABF00B223A3 /* LaunchScreen.storyboard */,
 				29CE47FF1BB72ABF00B223A3 /* Info.plist */,
+				A65D5FF91BB7692E00DC680C /* AddEventViewController.swift */,
 			);
 			path = Gathr;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29CE482F1BB737B000B223A3 /* EventCell.swift in Sources */,
+				A65D5FFA1BB7692E00DC680C /* AddEventViewController.swift in Sources */,
 				29CE47F61BB72ABF00B223A3 /* SecondViewController.swift in Sources */,
 				29CE47F21BB72ABF00B223A3 /* AppDelegate.swift in Sources */,
 				29CE482D1BB7348100B223A3 /* EventListView.swift in Sources */,
@@ -457,6 +461,7 @@
 				29CE480F1BB72ABF00B223A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29CE48101BB72ABF00B223A3 /* Build configuration list for PBXNativeTarget "GathrTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +470,7 @@
 				29CE48121BB72ABF00B223A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

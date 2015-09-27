@@ -49,7 +49,7 @@ class EventListView: UIViewController, UICollectionViewDataSource, UICollectionV
     // Input: UICollectionView, NSIndexPath
     // Output: UICollecitonViewCell
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath) as! EventCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath) as! EventCell
        
         
         return cell

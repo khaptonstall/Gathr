@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 import MapKit
+import Parse
 
 class EventCell: UITableViewCell{
     //let map = mapView
     var eventTitle:String?
-    var eventLocation:String? //change to map variable for location
+    var eventLocation:PFGeoPoint? //change to map variable for location
     var eventStartDate:String?
     var eventEndDate:String?
     var eventTime:String?

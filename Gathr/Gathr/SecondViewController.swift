@@ -34,15 +34,40 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        var loc = CLLocation(latitude: 41.934307, longitude: -88.773546)
+       
         
+        let latDelta:CLLocationDegrees = 0.045
+        let longDelta:CLLocationDegrees = 0.045
+
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        self.map.setRegion(region, animated: true)
         
-        let point:PFGeoPoint =  PFGeoPoint(location: locations[0])
-        query.whereKey("Location", nearGeoPoint: point, withinKilometers: 5.0)
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "You Are Here!"
+        self.map.addAnnotation(annotation)
+        /*
+        let mapCenter = map.userLocation.coordinate
+        var mapCamera = MKMapCamera(lookingAtCenterCoordinate: mapCenter, fromEyeCoordinate: mapCenter, eyeAltitude: 100000)
+        map.setCamera(mapCamera, animated: true)
+        */
+        let point:PFGeoPoint =  PFGeoPoint(location: CLLocation(latitude: location.latitude, longitude: location.longitude))
+        query.whereKey("Location", nearGeoPoint: point, withinKilometers: 50.0)
         query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 for obj in objects! {
-                    self.desLocation = obj["Location"] as! PFGeoPoint
+                    var dLocation = obj["Location"] as! PFGeoPoint
+                    
+                    var annotation = MKPointAnnotation()
+                    var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(dLocation.latitude, dLocation.longitude)
+                    
+                    annotation.coordinate = location
+                    annotation.title = "Sample Event"
+                    self.map.addAnnotation(annotation)
                 }
             } else {
                 print("Error")

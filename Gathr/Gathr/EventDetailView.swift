@@ -41,7 +41,8 @@ class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     var eTime:String?
     var eDate:String?
     var eLocation:String?
-    
+    var lat:Double?
+    var long:Double?
     
     
     
@@ -58,8 +59,8 @@ class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var lat: CLLocationDegrees = 41.934068
-        var long: CLLocationDegrees = -88.773857
+        var lat: CLLocationDegrees = self.lat!
+        let long: CLLocationDegrees = self.long!
         let latitude = lat//userLocation.coordinate.latitude
         let longitude = long //userLocation.coordinate.longitude
         let coordinate = CLLocationCoordinate2DMake(latitude, longitude)

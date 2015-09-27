@@ -16,7 +16,8 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     var manager: CLLocationManager!
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var refreshCtrl = UIRefreshControl()
+
     let eventQuery = PFQuery(className: "Events")
     var eventList = [EventCell]()
     
@@ -57,6 +58,10 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         self.view.addSubview(tableView!)
 
         
+        self.refreshCtrl.addTarget(self, action: "pullToRefresh", forControlEvents: .ValueChanged)
+        self.refreshCtrl.tintColor = UIColor.whiteColor()
+        self.tableView.addSubview(self.refreshCtrl)
+        
         PFAnonymousUtils.logInWithBlock {
             (user: PFUser?, error: NSError?) -> Void in
             if error != nil || user == nil {
@@ -70,6 +75,18 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
 
 
     }
+    
+    
+    
+    func pullToRefresh(){
+        if refreshCtrl.refreshing == false {
+            self.tableView.reloadData()
+        }
+        
+        refreshCtrl.endRefreshing()
+    }
+    
+    
     
     
     var region:MKCoordinateRegion?
@@ -106,13 +123,22 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func getEvents(){
+        self.eventQuery.orderByDescending("startDate")
         self.eventQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil{
                 for obj in objects!{
                     var event = EventCell()
                     event.eventTitle = obj["title"] as! String
-                    event.eventStartDate = obj["startDate"] as! String
-                    //event.eventTime = obj["time"] as! String
+                    
+                    if obj["endDate"] != nil{
+                        event.eventStartDate = obj["endDate"] as! String
+                    }
+                    
+                    if obj["startDate"] != nil{
+                        event.eventTime = obj["startDate"] as! String
+
+                    }
+                    event.eventLocation = obj["Location"] as! PFGeoPoint
                     
                     
                     self.eventList.append(event)
@@ -166,7 +192,12 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
             destination?.eTitle = eventList[selectedRow].eventTitle
             destination?.eTime = eventList[selectedRow].eventTime
             destination?.eDate = eventList[selectedRow].eventStartDate
-            destination?.eLocation = eventList[selectedRow].eventLocation
+            
+           // eventList[selectedRow].eventLocation?.latitude
+            destination?.lat = eventList[selectedRow].eventLocation?.latitude
+            destination?.long = eventList[selectedRow].eventLocation?.longitude
+            //var loc = CLLocation(latitude: (eventList[selectedRow].eventLocation?.latitude)! , longitude: (eventList[selectedRow].eventLocation?.longitude)!)
+            //destination?.coordinate = loc
             
             destination!.delegate = self;
         }

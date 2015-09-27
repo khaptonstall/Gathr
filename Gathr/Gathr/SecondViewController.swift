@@ -33,7 +33,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        //manager.startUpdatingLocation()
         var loc = CLLocation(latitude: 41.934307, longitude: -88.773546)
        
         
@@ -48,6 +48,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = "You Are Here!"
+    
         self.map.addAnnotation(annotation)
         /*
         let mapCenter = map.userLocation.coordinate
@@ -67,6 +68,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
                     
                     annotation.coordinate = location
                     annotation.title = obj["title"] as! String
+                    annotation.subtitle = obj["startDate"] as! String
                     self.map.addAnnotation(annotation)
                 }
             } else {
@@ -99,7 +101,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        self.map.setRegion(region, animated: false)
+        self.map.setRegion(region, animated: true)
         
     }
     

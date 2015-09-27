@@ -18,10 +18,12 @@ class EventCell: UITableViewCell{
     var eventStartDate:String?
     var eventEndDate:String?
     var eventTime:String?
+    var eventHost:String?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var hostLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 }

@@ -12,6 +12,9 @@ import MapKit
 
 class AddEventViewController: UIViewController {
 
+    var startDate:NSDate?
+    var endDate:NSDate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,6 +86,7 @@ class AddEventViewController: UIViewController {
         dateFormatter1.dateStyle = NSDateFormatterStyle.MediumStyle
         
         dateFormatter1.timeStyle = NSDateFormatterStyle.MediumStyle
+        self.endDate = sender1.date
         
         dateEndField.text = dateFormatter1.stringFromDate(sender1.date)
         
@@ -96,6 +100,8 @@ class AddEventViewController: UIViewController {
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         
         dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+        
+        self.startDate = sender.date
         
         dateTextField.text = dateFormatter.stringFromDate(sender.date)
         
@@ -141,6 +147,8 @@ class AddEventViewController: UIViewController {
             add_Event["hostname"] = hostName.text
             add_Event["startDate"] = dateTextField.text
             add_Event["endDate"] = dateEndField.text
+            add_Event["startDates"] = self.startDate
+            add_Event["endDates"] = self.endDate
             var address = location.text
             print(location.text)
             var geocoder = CLGeocoder()

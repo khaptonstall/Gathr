@@ -415,6 +415,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22O-FH-e5A">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="52" width="332" height="21"/>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -432,10 +440,21 @@
                                                 <constraint firstItem="mmM-j5-v21" firstAttribute="top" secondItem="sjB-Tz-f53" secondAttribute="topMargin" id="oQe-9W-4uj"/>
                                                 <constraint firstItem="o8B-di-Bd0" firstAttribute="top" secondItem="b1i-kN-hgl" secondAttribute="bottom" constant="34" id="uGG-SS-AJk"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="22O-FH-e5A"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="22O-FH-e5A"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="o8B-di-Bd0" id="OCf-cm-e4b"/>
+                                            <outlet property="hostLabel" destination="22O-FH-e5A" id="xa4-cq-HUD"/>
                                             <outlet property="mapView" destination="b1i-kN-hgl" id="Yea-sY-QUC"/>
                                             <outlet property="timeLabel" destination="4oj-wq-vcs" id="JxX-mb-zdV"/>
                                             <outlet property="titleLabel" destination="pDs-47-Y5f" id="aBi-hp-V3W"/>
@@ -467,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="-390"/>
+            <point key="canvasLocation" x="1528.5" y="-390"/>
         </scene>
         <!--Event Detail View-->
         <scene sceneID="PsL-gK-DZU">
@@ -543,6 +562,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="host" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfi-hf-2qH">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -558,9 +583,12 @@
                             <constraint firstItem="cVA-rR-UmY" firstAttribute="top" secondItem="T5C-LF-b6M" secondAttribute="bottom" constant="23" id="PH2-Lq-rEt"/>
                             <constraint firstItem="T5C-LF-b6M" firstAttribute="baseline" secondItem="kpe-zC-dOR" secondAttribute="baseline" id="QZ2-9h-1a2"/>
                             <constraint firstItem="kpe-zC-dOR" firstAttribute="trailing" secondItem="cVA-rR-UmY" secondAttribute="trailing" id="SOQ-Ev-00r"/>
+                            <constraint firstItem="gfi-hf-2qH" firstAttribute="leading" secondItem="gRP-yt-YWg" secondAttribute="leading" id="Sim-jZ-Hbh"/>
                             <constraint firstItem="gRP-yt-YWg" firstAttribute="top" secondItem="57Y-co-9O2" secondAttribute="bottom" constant="28" id="UoD-si-MkO"/>
                             <constraint firstItem="T5C-LF-b6M" firstAttribute="firstBaseline" secondItem="kpe-zC-dOR" secondAttribute="firstBaseline" id="VM7-56-Vxr"/>
                             <constraint firstItem="NDO-XB-fz0" firstAttribute="leading" secondItem="kpe-zC-dOR" secondAttribute="leading" id="Vuf-qw-Xcw"/>
+                            <constraint firstItem="gfi-hf-2qH" firstAttribute="trailing" secondItem="gRP-yt-YWg" secondAttribute="trailing" id="X5W-QH-LP8"/>
+                            <constraint firstItem="gfi-hf-2qH" firstAttribute="top" secondItem="gRP-yt-YWg" secondAttribute="bottom" constant="8" symbolic="YES" id="az6-fy-Qfo"/>
                             <constraint firstItem="NDO-XB-fz0" firstAttribute="trailing" secondItem="kpe-zC-dOR" secondAttribute="trailing" id="b0S-j0-op4"/>
                             <constraint firstItem="Zgc-6d-jgb" firstAttribute="firstBaseline" secondItem="NDO-XB-fz0" secondAttribute="firstBaseline" id="bDT-WW-zg0"/>
                             <constraint firstAttribute="trailing" secondItem="bbs-6i-FsE" secondAttribute="trailing" id="eW4-p3-HlZ"/>
@@ -571,11 +599,35 @@
                             <constraint firstItem="57Y-co-9O2" firstAttribute="top" secondItem="fMu-7A-ydV" secondAttribute="top" id="tYu-qD-TWP"/>
                             <constraint firstItem="Zgc-6d-jgb" firstAttribute="leading" secondItem="fMu-7A-ydV" secondAttribute="leadingMargin" constant="-1" id="vD4-sh-KCM"/>
                             <constraint firstItem="NDO-XB-fz0" firstAttribute="trailing" secondItem="gRP-yt-YWg" secondAttribute="trailing" id="vh3-Oi-WeN"/>
+                            <constraint firstItem="Zgc-6d-jgb" firstAttribute="top" secondItem="gfi-hf-2qH" secondAttribute="bottom" constant="10" id="xPV-CX-CvL"/>
                             <constraint firstItem="T5C-LF-b6M" firstAttribute="leading" secondItem="fMu-7A-ydV" secondAttribute="leadingMargin" constant="7" id="z9M-7e-rQv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="gfi-hf-2qH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Sim-jZ-Hbh"/>
+                                <exclude reference="X5W-QH-LP8"/>
+                                <exclude reference="az6-fy-Qfo"/>
+                                <exclude reference="xPV-CX-CvL"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="gfi-hf-2qH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Sim-jZ-Hbh"/>
+                                <include reference="X5W-QH-LP8"/>
+                                <include reference="az6-fy-Qfo"/>
+                                <include reference="xPV-CX-CvL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="kpe-zC-dOR" id="4EO-za-d52"/>
+                        <outlet property="hostLabel" destination="gfi-hf-2qH" id="LU1-3H-LZW"/>
                         <outlet property="locationLabel" destination="cVA-rR-UmY" id="g7E-P2-kFa"/>
                         <outlet property="mapView" destination="57Y-co-9O2" id="bOh-l8-v4n"/>
                         <outlet property="timeLabel" destination="NDO-XB-fz0" id="b3r-5C-duU"/>
@@ -584,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU5-x9-UTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2252" y="-390"/>
+            <point key="canvasLocation" x="2251.5" y="-390"/>
         </scene>
         <!--Map-->
         <scene sceneID="wg7-f3-ORb">

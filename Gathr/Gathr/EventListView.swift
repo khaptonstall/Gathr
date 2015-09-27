@@ -79,6 +79,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func pullToRefresh(){
+        self.getEvents()
         if refreshCtrl.refreshing == false {
             self.getEvents()
         }
@@ -123,7 +124,8 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func getEvents(){
-        self.eventQuery.orderByDescending("startDate")
+        self.eventList = [EventCell]()
+        self.eventQuery.orderByAscending("startDates")
         self.eventQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil{
                 for obj in objects!{
@@ -139,7 +141,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
 
                     }
                     event.eventLocation = obj["Location"] as! PFGeoPoint
-                    
+                    event.eventHost = obj["hostname"] as! String
                     
                     self.eventList.append(event)
                 }
@@ -167,6 +169,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         cell.titleLabel.text = self.eventList[indexPath.row].eventTitle
         cell.timeLabel.text = self.eventList[indexPath.row].eventTime
         cell.dateLabel.text = self.eventList[indexPath.row].eventStartDate
+        cell.hostLabel.text = self.eventList[indexPath.row].eventHost
         if self.region != nil{
             cell.mapView.setRegion(self.region!, animated: true)
 
@@ -196,6 +199,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
            // eventList[selectedRow].eventLocation?.latitude
             destination?.lat = eventList[selectedRow].eventLocation?.latitude
             destination?.long = eventList[selectedRow].eventLocation?.longitude
+            destination!.eHost = eventList[selectedRow].eventHost
             //var loc = CLLocation(latitude: (eventList[selectedRow].eventLocation?.latitude)! , longitude: (eventList[selectedRow].eventLocation?.longitude)!)
             //destination?.coordinate = loc
             

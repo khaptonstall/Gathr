@@ -31,6 +31,7 @@ class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var hostLabel: UILabel!
     @IBAction func remindButton(sender: AnyObject) {
         self.setCalReminder()
 
@@ -43,6 +44,7 @@ class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     var eLocation:String?
     var lat:Double?
     var long:Double?
+    var eHost:String?
     
     
     
@@ -64,18 +66,40 @@ class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         let latitude = lat//userLocation.coordinate.latitude
         let longitude = long //userLocation.coordinate.longitude
         let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-        let latDelta:CLLocationDegrees = 0.1
-        let lonDelta:CLLocationDegrees = 0.1
-        var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta,lonDelta)
-        var mypos: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
-        var region:MKCoordinateRegion = MKCoordinateRegionMake(mypos, theSpan)
+      //  let latDelta:CLLocationDegrees = 0.1
+      //  let lonDelta:CLLocationDegrees = 0.1
+   //     var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta,lonDelta)
+    //    var mypos: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+     //   var region:MKCoordinateRegion = MKCoordinateRegionMake(mypos, theSpan)
+     //   self.mapView.setRegion(region, animated: true)
+        
+        
+        
+        var loc = CLLocation(latitude: lat, longitude: long)
+        
+        
+        let latDelta:CLLocationDegrees = 0.0009
+        let longDelta:CLLocationDegrees = 0.0009
+        
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         self.mapView.setRegion(region, animated: true)
+        
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = eTitle
+        self.mapView.addAnnotation(annotation)
+        
+        
+        
         
         titleLabel.text = eTitle
       
         timeLabel.text = eTime
         dateLabel.text = eDate
         locationLabel.text = eLocation
+        hostLabel.text = eHost
         
     }
     

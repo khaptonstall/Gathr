@@ -9,9 +9,11 @@
 import Foundation
 import Parse
 import UIKit
+import MapKit
 
-class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, EventDetailViewDelegate{
+class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate,EventDetailViewDelegate{
     
+    var manager: CLLocationManager!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,7 +23,32 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
      override func viewDidLoad(){
         super.viewDidLoad()
-        //self.tableView.rowHeight = 60
+        
+      /*  manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation() */
+        var lat: CLLocationDegrees = 41.934068
+        var long: CLLocationDegrees = -88.773857
+        let latitude = lat//userLocation.coordinate.latitude
+        
+        let longitude = long //userLocation.coordinate.longitude
+        
+        let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let latDelta:CLLocationDegrees = 0.1
+        
+        let lonDelta:CLLocationDegrees = 0.1
+        
+        var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta,lonDelta)
+        
+        var mypos: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+  
+        self.region = MKCoordinateRegionMake(mypos, theSpan)
+        
+        
+        
         self.view.backgroundColor = UIColor.lightGrayColor()
         //Set up table view
         self.tableView.backgroundColor = UIColor.clearColor()
@@ -44,6 +71,40 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
 
     }
     
+    
+    var region:MKCoordinateRegion?
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation:CLLocation = locations[0]
+        var lat: CLLocationDegrees = -23.527096772791133
+        var long: CLLocationDegrees = -46.48964569157911
+        let latitude = lat//userLocation.coordinate.latitude
+        
+        let longitude = long //userLocation.coordinate.longitude
+        
+        let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let latDelta:CLLocationDegrees = 0.01
+        
+        let lonDelta:CLLocationDegrees = 0.01
+        
+        var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta,lonDelta)
+        
+        var mypos: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+        
+        self.region = MKCoordinateRegionMake(mypos, theSpan)
+        
+        //let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        
+        //let region:MKCoordinateRegion = MKCoordinateRegionMake(coordinate, span)
+        //self.region = MKCoordinateRegionMake(coordinate, span)
+        //self.map.setRegion(region, animated: true)
+
+    }
+
+    
+    
     func getEvents(){
         self.eventQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil{
@@ -52,6 +113,8 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
                     event.eventTitle = obj["title"] as! String
                     event.eventStartDate = obj["startDate"] as! String
                     event.eventTime = obj["time"] as! String
+                    
+                    
                     self.eventList.append(event)
                 }
                 self.tableView.reloadData()
@@ -78,7 +141,10 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         cell.titleLabel.text = self.eventList[indexPath.row].eventTitle
         cell.timeLabel.text = self.eventList[indexPath.row].eventTime
         cell.dateLabel.text = self.eventList[indexPath.row].eventStartDate
+        if self.region != nil{
+            cell.mapView.setRegion(self.region!, animated: true)
 
+        }
 
         //cell.timeLabel.text = self.eventList[indexPath.row].event
        // cell.textLabel?.text = self.items[indexPath.row]
@@ -95,17 +161,12 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         if segue.identifier == "showEventDetail" {
             let destination = segue.destinationViewController as? EventDetailView
             let cell = sender as! UITableViewCell
-            // let selectedRow = collectionView.indexPathForCell(cell)!.row
-            //destination!.eTitle =  events[selectedRow].summary
             
-            /*destination!.networkConnection = self.networkConnection
-            if((events[selectedRow].endTime) != nil){
-            /// destination!.time = events[selectedRow].startTime! + " - " + events[selectedRow].endTime!
-            }else{
-            // destination!.time = events[selectedRow].startTime
-            }*/
-            
-            
+             let selectedRow = tableView.indexPathForCell(cell)!.row
+            destination?.eTitle = eventList[selectedRow].eventTitle
+            destination?.eTime = eventList[selectedRow].eventTime
+            destination?.eDate = eventList[selectedRow].eventStartDate
+            destination?.eLocation = eventList[selectedRow].eventLocation
             
             destination!.delegate = self;
         }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class EventCell: UITableViewCell{
     //let map = mapView
@@ -17,6 +18,7 @@ class EventCell: UITableViewCell{
     var eventEndDate:String?
     var eventTime:String?
     
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!

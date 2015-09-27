@@ -10,18 +10,116 @@ import Foundation
 import UIKit
 import Parse
 import MapKit
+import EventKit
 
 protocol EventDetailViewDelegate {
     //func EventViewIsAttending(value: Int)
     //func EventViewIsNotAttending(value: Int)
 }
 
-class EventDetailView: UIViewController{
+class EventDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
     var delegate : EventDetailViewDelegate?
 
+    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    @IBAction func remindButton(sender: AnyObject) {
+        self.setCalReminder()
+
+    }
+   
+    
+    var eTitle:String?
+    var eTime:String?
+    var eDate:String?
+    var eLocation:String?
+    
+    
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.tabBarController?.tabBar.hidden = false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var lat: CLLocationDegrees = 41.934068
+        var long: CLLocationDegrees = -88.773857
+        let latitude = lat//userLocation.coordinate.latitude
+        let longitude = long //userLocation.coordinate.longitude
+        let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        let latDelta:CLLocationDegrees = 0.1
+        let lonDelta:CLLocationDegrees = 0.1
+        var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta,lonDelta)
+        var mypos: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long)
+        var region:MKCoordinateRegion = MKCoordinateRegionMake(mypos, theSpan)
+        self.mapView.setRegion(region, animated: true)
+        
+        titleLabel.text = eTitle
+      
+        timeLabel.text = eTime
+        dateLabel.text = eDate
+        locationLabel.text = eLocation
+        
+    }
+    
+    func setCalReminder(){
+        
+        var eventStore : EKEventStore = EKEventStore()
+        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
+            granted, error in
+            if (granted) && (error == nil) {
+                //Add event to user calendar
+                
+              //  if #available(iOS 8.0, *) {
+                   /* let addEventToCalendar = UIAlertController(title: "Would you like to set a reminder?", message:
+                        "", preferredStyle: UIAlertControllerStyle.Alert)
+                    addEventToCalendar.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction) in*/
+                        var event:EKEvent = EKEvent(eventStore: eventStore)
+                        event.title = self.eTitle!
+                        var alarm:EKAlarm = EKAlarm(relativeOffset: -3600)
+                        event.alarms = [alarm]
+                        event.startDate = NSDate()
+                        event.endDate = event.startDate.dateByAddingTimeInterval(60*60) //1 hour long meeting
+                        event.calendar = eventStore.defaultCalendarForNewEvents
+                        do {
+                            try  eventStore.saveEvent(event, span: .ThisEvent)
+                        } catch _ {
+                        }
+                       // addEventToCalendar.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        //self.presentViewController(addEventToCalendar, animated: true, completion: nil)
+                        
+                        //Create a display for the user
+                        let alertController = UIAlertController(title: "A reminder has been set!", message:
+                            "We'll see you there!", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                        //Present display informing user the event was added
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                   // }))
+               // }
+                
+                
+            }
+            else{
+                print(error)
+            }
+        })
     }
     
     

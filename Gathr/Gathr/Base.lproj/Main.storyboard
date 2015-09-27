@@ -33,13 +33,12 @@
                                                     <rect key="frame" x="8" y="8" width="584" height="94"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googlemap" translatesAutoresizingMaskIntoConstraints="NO" id="LY5-dK-Zbh">
-                                                    <rect key="frame" x="8" y="8" width="584" height="20"/>
-                                                    <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b1i-kN-hgl">
+                                                    <rect key="frame" x="8" y="8" width="584" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Erw-mC-Non"/>
+                                                        <constraint firstAttribute="height" constant="28" id="lXB-VD-zqr"/>
                                                     </constraints>
-                                                </imageView>
+                                                </mapView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDs-47-Y5f">
                                                     <rect key="frame" x="8" y="33" width="81" height="21"/>
                                                     <constraints>
@@ -72,28 +71,23 @@
                                             <constraints>
                                                 <constraint firstItem="mmM-j5-v21" firstAttribute="leading" secondItem="pDs-47-Y5f" secondAttribute="leading" id="8So-1H-9GB"/>
                                                 <constraint firstItem="mmM-j5-v21" firstAttribute="bottom" secondItem="sjB-Tz-f53" secondAttribute="bottomMargin" id="CFQ-vB-xjK"/>
-                                                <constraint firstAttribute="trailing" secondItem="LY5-dK-Zbh" secondAttribute="trailing" constant="8" id="Rpf-Qx-gd6"/>
+                                                <constraint firstItem="b1i-kN-hgl" firstAttribute="trailing" secondItem="mmM-j5-v21" secondAttribute="trailing" id="Lpa-1z-ptA"/>
                                                 <constraint firstItem="o8B-di-Bd0" firstAttribute="leading" secondItem="4oj-wq-vcs" secondAttribute="trailing" constant="20" id="S5f-SA-p7E"/>
-                                                <constraint firstItem="LY5-dK-Zbh" firstAttribute="leading" secondItem="sjB-Tz-f53" secondAttribute="leading" constant="8" id="SGL-jm-m5u"/>
                                                 <constraint firstItem="o8B-di-Bd0" firstAttribute="top" secondItem="pDs-47-Y5f" secondAttribute="bottom" constant="16" id="YBE-kG-z5C"/>
+                                                <constraint firstItem="b1i-kN-hgl" firstAttribute="leading" secondItem="pDs-47-Y5f" secondAttribute="leading" id="ZEH-eg-YWE"/>
+                                                <constraint firstItem="b1i-kN-hgl" firstAttribute="top" secondItem="mmM-j5-v21" secondAttribute="top" id="Ztr-37-afy"/>
                                                 <constraint firstItem="pDs-47-Y5f" firstAttribute="leading" secondItem="sjB-Tz-f53" secondAttribute="leadingMargin" id="a7D-nO-CDd"/>
-                                                <constraint firstItem="mmM-j5-v21" firstAttribute="centerX" secondItem="LY5-dK-Zbh" secondAttribute="centerX" id="b0w-Be-snG"/>
                                                 <constraint firstItem="4oj-wq-vcs" firstAttribute="top" secondItem="pDs-47-Y5f" secondAttribute="bottom" constant="16" id="bcA-Bi-7II"/>
                                                 <constraint firstItem="4oj-wq-vcs" firstAttribute="leading" secondItem="sjB-Tz-f53" secondAttribute="leadingMargin" id="gE6-QE-8oW"/>
-                                                <constraint firstItem="LY5-dK-Zbh" firstAttribute="top" secondItem="sjB-Tz-f53" secondAttribute="top" constant="8" id="h40-Mf-fjJ"/>
+                                                <constraint firstItem="b1i-kN-hgl" firstAttribute="trailing" secondItem="sjB-Tz-f53" secondAttribute="trailingMargin" id="mC1-Vw-wej"/>
                                                 <constraint firstItem="mmM-j5-v21" firstAttribute="top" secondItem="sjB-Tz-f53" secondAttribute="topMargin" id="oQe-9W-4uj"/>
-                                                <constraint firstItem="LY5-dK-Zbh" firstAttribute="top" secondItem="sjB-Tz-f53" secondAttribute="topMargin" constant="-3" id="phv-VB-SZm"/>
-                                                <constraint firstItem="pDs-47-Y5f" firstAttribute="top" secondItem="LY5-dK-Zbh" secondAttribute="bottom" constant="5" id="wfZ-ZG-qTC"/>
+                                                <constraint firstItem="o8B-di-Bd0" firstAttribute="top" secondItem="b1i-kN-hgl" secondAttribute="bottom" constant="34" id="uGG-SS-AJk"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="phv-VB-SZm"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="o8B-di-Bd0" id="OCf-cm-e4b"/>
+                                            <outlet property="mapView" destination="b1i-kN-hgl" id="Yea-sY-QUC"/>
                                             <outlet property="timeLabel" destination="4oj-wq-vcs" id="JxX-mb-zdV"/>
                                             <outlet property="titleLabel" destination="pDs-47-Y5f" id="aBi-hp-V3W"/>
                                             <segue destination="wuR-IF-Bxy" kind="show" identifier="showEventDetail" id="bXX-Dq-EIk"/>
@@ -135,12 +129,62 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="57Y-co-9O2">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="57Y-co-9O2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="229"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRP-yt-YWg">
+                                <rect key="frame" x="20" y="257" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbs-6i-FsE">
+                                <rect key="frame" x="0.0" y="453" width="600" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="uAl-zT-d5X"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="RemindMe"/>
+                                <connections>
+                                    <action selector="remindButton:" destination="wuR-IF-Bxy" eventType="touchUpInside" id="DS0-t9-mn5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDO-XB-fz0">
+                                <rect key="frame" x="20" y="317" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-zC-dOR">
+                                <rect key="frame" x="20" y="357" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVA-rR-UmY">
+                                <rect key="frame" x="20" y="401" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bbs-6i-FsE" firstAttribute="trailing" secondItem="57Y-co-9O2" secondAttribute="trailing" id="52z-Xa-9js"/>
+                            <constraint firstItem="bbs-6i-FsE" firstAttribute="centerX" secondItem="gRP-yt-YWg" secondAttribute="centerX" id="5qC-vx-7Ci"/>
+                            <constraint firstItem="bbs-6i-FsE" firstAttribute="leading" secondItem="fMu-7A-ydV" secondAttribute="leading" id="6LL-vJ-7B3"/>
+                            <constraint firstAttribute="bottom" secondItem="bbs-6i-FsE" secondAttribute="bottom" id="GUv-ve-7AA"/>
+                            <constraint firstItem="bbs-6i-FsE" firstAttribute="leading" secondItem="57Y-co-9O2" secondAttribute="leading" id="a5V-af-b76"/>
+                            <constraint firstItem="bbs-6i-FsE" firstAttribute="top" secondItem="cVA-rR-UmY" secondAttribute="bottom" constant="31" id="aki-yQ-EHs"/>
+                            <constraint firstAttribute="trailing" secondItem="bbs-6i-FsE" secondAttribute="trailing" id="vX8-Va-ppG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="kpe-zC-dOR" id="4EO-za-d52"/>
+                        <outlet property="locationLabel" destination="cVA-rR-UmY" id="g7E-P2-kFa"/>
+                        <outlet property="mapView" destination="57Y-co-9O2" id="bOh-l8-v4n"/>
+                        <outlet property="timeLabel" destination="NDO-XB-fz0" id="b3r-5C-duU"/>
+                        <outlet property="titleLabel" destination="gRP-yt-YWg" id="5of-t3-f0O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU5-x9-UTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,7 +272,7 @@
     </scenes>
     <resources>
         <image name="Calendar-32" width="32" height="32"/>
-        <image name="googlemap" width="800" height="439"/>
+        <image name="RemindMe" width="1443" height="246"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

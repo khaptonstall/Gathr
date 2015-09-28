@@ -20,7 +20,8 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
 
     let eventQuery = PFQuery(className: "Events")
     var eventList = [EventCell]()
-    
+    var region:MKCoordinateRegion?
+
     
      override func viewDidLoad(){
         super.viewDidLoad()
@@ -62,14 +63,14 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         self.refreshCtrl.tintColor = UIColor.whiteColor()
         self.tableView.addSubview(self.refreshCtrl)
         
-        PFAnonymousUtils.logInWithBlock {
+    /*    PFAnonymousUtils.logInWithBlock {
             (user: PFUser?, error: NSError?) -> Void in
             if error != nil || user == nil {
                 print("Anonymous login failed.")
             } else {
                 print("Anonymous user logged in.")
             }
-        }
+        }*/
         
         self.getEvents()
 
@@ -79,10 +80,9 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func pullToRefresh(){
-        self.getEvents()
-        if refreshCtrl.refreshing == false {
-            self.getEvents()
-        }
+       // if refreshCtrl.refreshing == false {
+           self.getEvents()
+       // }
         
         refreshCtrl.endRefreshing()
     }
@@ -90,9 +90,8 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     
-    var region:MKCoordinateRegion?
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+   /* func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation:CLLocation = locations[0]
         var lat: CLLocationDegrees = -23.527096772791133
@@ -119,31 +118,24 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
         //self.region = MKCoordinateRegionMake(coordinate, span)
         //self.map.setRegion(region, animated: true)
 
-    }
+    } */
 
     
     
     func getEvents(){
-        self.eventList = [EventCell]()
         self.eventQuery.orderByAscending("startDates")
         self.eventQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil{
+                self.eventList.removeAll(keepCapacity: false)
                 for obj in objects!{
-                    var event = EventCell()
-                    event.eventTitle = obj["title"] as! String
                     
-                    if obj["endDate"] != nil{
-                        event.eventStartDate = obj["endDate"] as! String
-                    }
-                    
-                    if obj["startDate"] != nil{
-                        event.eventTime = obj["startDate"] as! String
-
-                    }
-                    event.eventLocation = obj["Location"] as! PFGeoPoint
-                    event.eventHost = obj["hostname"] as! String
-                    
-                    self.eventList.append(event)
+                    let title = obj["title"] as! String
+                    let endDate = obj["endDate"] as! String
+                    let startDate = obj["startDate"] as! String
+                    var loc =  obj["Location"] as! PFGeoPoint
+                    var host = obj["hostname"] as! String
+                    self.storeObject(title, start: startDate, end: endDate, loc: loc, host: host)
+       
                 }
                 self.tableView.reloadData()
             }
@@ -153,6 +145,22 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
             
         })
     }
+    
+    func storeObject(title:String, start:String, end:String, loc:PFGeoPoint, host:String){
+        var event = EventCell()
+        event.eventTitle = title
+        
+        event.eventStartDate = end
+        
+        event.eventTime = start
+            
+        event.eventLocation = loc
+        event.eventHost = host
+        
+        self.eventList.append(event)
+    }
+    
+
     
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -175,8 +183,7 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
 
         }
 
-        //cell.timeLabel.text = self.eventList[indexPath.row].event
-       // cell.textLabel?.text = self.items[indexPath.row]
+      
         
         return cell
     }
@@ -196,12 +203,9 @@ class EventListView: UIViewController, UITableViewDataSource, UITableViewDelegat
             destination?.eTime = eventList[selectedRow].eventTime
             destination?.eDate = eventList[selectedRow].eventStartDate
             
-           // eventList[selectedRow].eventLocation?.latitude
             destination?.lat = eventList[selectedRow].eventLocation?.latitude
             destination?.long = eventList[selectedRow].eventLocation?.longitude
             destination!.eHost = eventList[selectedRow].eventHost
-            //var loc = CLLocation(latitude: (eventList[selectedRow].eventLocation?.latitude)! , longitude: (eventList[selectedRow].eventLocation?.longitude)!)
-            //destination?.coordinate = loc
             
             destination!.delegate = self;
         }
